@@ -1,0 +1,9 @@
+/* src/App.css */
+.App {
+  position: absolute;
+  top: 5%;
+  left: 25%;
+  background-color: rgb(247, 227, 227);
+  border: 1px solid black;
+  width: 1000px;
+}

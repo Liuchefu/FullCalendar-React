@@ -1,0 +1,28 @@
+/* MyCalendar.css */
+.tippy-box[data-theme~='custom-theme'] {
+    background-color: #000000;
+    /* 背景色の変更 */
+    color: white;
+    /* 文字色の変更 */
+    font-size: 20px;
+}
+
+.tippy-box[data-theme~='custom-theme'][data-placement^='top'] .tippy-arrow {
+    border-top-color: #aae261;
+    /* 矢印の色を変更 */
+}
+
+.tippy-box[data-theme~='custom-theme'][data-placement^='bottom'] .tippy-arrow {
+    border-bottom-color: #4CAF50;
+    /* 矢印の色を変更 */
+}
+
+.tippy-box[data-theme~='custom-theme'][data-placement^='left'] .tippy-arrow {
+    border-left-color: #4CAF50;
+    /* 矢印の色を変更 */
+}
+
+.tippy-box[data-theme~='custom-theme'][data-placement^='right'] .tippy-arrow {
+    border-right-color: #4CAF50;
+    /* 矢印の色を変更 */
+}
