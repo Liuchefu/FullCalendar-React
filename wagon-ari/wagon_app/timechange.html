@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>時間変更</title>
+    <link rel="stylesheet" href="style_CSS/style.css" />
+    <script src="main_JS/config.js"></script>
+    <script src="main_JS/timechange.js"></script>
+    <style>
+        select {
+            width: 80px;
+            height: 80px;
+            font-size: 30px;
+        }
+
+        select option {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="getTheme()">
+    <!-- ボタンとセレクトボックスを囲むコンテナ -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div id="time-container" style="background-color:rgb(204, 204, 204); width:500px; height: 400px; position: relative; top: -100px;">
+            <div id="themeid" style="font-size:30px; color: rgb(0, 9, 85); text-align: center; position: relative;top: 10px;">題名</div>
+            <div style="position: absolute; top: 50px; left: -20px;">
+                <div style="margin-top: 30px; text-align: center;">
+                    <button style="position: absolute; top:15px; left:100px; width:150px; height: 50px; font-size: 30px;"
+                    onclick="selectPreviousOption('hour-select')">－</button>
+                    <select id="hour-select" style="background-color: antiquewhite; position: absolute; top:60px; left: 100px; width:150px; height: 150px; font-size: 50px;">
+                        <option value="00">00</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                    </select>
+                    <button style="position: absolute; top:200px; left: 100px; width:150px; height: 50px; font-size:30px;"
+                    onclick="selectNextOption('hour-select')">＋</button>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                <div style="position: absolute; top: 50px; left: 260px; font-size: 100px;">:</div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button style="position: absolute; top:15px;left:300px; width:150px; height: 50px; font-size: 30px;"
+                    onclick="selectPreviousOption('minute-select')">－</button>
+                    <select id="minute-select" style="background-color: antiquewhite; position: absolute; top:60px; left: 300px; width:150px; height: 150px; font-size: 50px;">
+                        <option value="00">00</option>
+                        <option value="05">05</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                    </select>
+                    <button style="position: absolute; top:200px; left: 300px; width:150px; height: 50px; font-size: 30px;" onclick="selectNextOption('minute-select')">＋</button>
+                </div>
+            </div>
+            <div style="position: absolute; left: 320px; top: 350px;">
+                <button style="position: absolute; top: -20px; left: -150px; width: 150px; height: 50px; font-size: 20px;" onclick="window.close()">キャンセル</button>
+                <button style="position: absolute; top: -20px; left: 10px; width: 150px; height: 50px; font-size: 20px;" onclick="ChangeStartTimeResult()">登録</button>
+            </div>
+        </div>
+    </div>
+</body>

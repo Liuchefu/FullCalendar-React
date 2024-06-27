@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>追加作業登録画面</title>
+    <script src="main_JS/config.js"></script>
+    <script src="main_JS/addwork.js"></script>
+    <script src="cmb_JS/cmb_setting.js"></script>
+
+    <link rel="stylesheet" href="style_CSS/style.css" />
+</head>
+
+
+<body onload="AddWorkInit()">
+    <div style="position:absolute; top: 20px; ">
+        <div
+            style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top:0px; font-size:30px; user-select: none;">
+            現在：&nbsp;
+        </div>
+
+        <div id="realtimeid"
+            style="width: 300px; height: 40px; font-size:25px; position:absolute; left:200px; top:0px; font-size:30px; background-color:bisque; user-select: none;">
+            &nbsp;
+        </div>
+
+        <div
+            style="width: 250px; height: 40px; font-size:25px; position:absolute; left:100px; top:50px; font-size:30px;user-select: none;">
+            担当号車：&nbsp;
+        </div>
+        <div id="carnumid"
+            style="width :250px; position: absolute; left: 250px; top: 50px; font-size:30px ;background-color: rgb(7, 255, 238);user-select: none;">
+            号車
+        </div>
+
+        <div
+            style="width: 250px; height: 40px; font-size:25px; position:absolute; left:130px; top:100px; font-size:30px;user-select: none;">
+            登録者：&nbsp;
+        </div>
+
+        <div id="personid"
+            style="width :250px; position: absolute; left: 250px; top: 100px; font-size:30px ;background-color: rgb(7, 255, 238);user-select: none;">
+            登録者
+        </div>
+
+        <div
+            style="width: 250px; height: 40px; font-size:25px; position:absolute; left:100px; top:150px; font-size:30px;user-select: none;">
+            発車時刻：&nbsp;
+        </div>
+
+        <div id="addworkdepartureid"
+            style="width :250px; position: absolute; left: 250px; top: 150px; font-size:30px ;background-color: rgb(7, 255, 238);user-select: none;">
+            発車時刻
+        </div>
+
+        <div
+            style="width: 250px; height: 40px; font-size:25px; position:absolute; left:100px; top:200px; font-size:30px; user-select: none;">
+            受け日時：&nbsp;
+        </div>
+
+        <div id="addworkreceiveid"
+            style="width :250px; position: absolute; left: 250px; top: 200px; font-size:30px ;background-color: rgb(7, 255, 238); user-select: none;">
+            受取日時
+        </div>
+
+        <div
+            style="width: 250px; height: 40px; font-size:25px; position:absolute; left:100px; top: 250px; font-size:30px; user-select:none">
+            渡し日時：&nbsp;
+        </div>
+
+        <div id="addworkdeliveryid"
+            style="width :250px; position: absolute; left: 250px; top: 250px; font-size:30px ;background-color: rgb(7, 255, 238); user-select: none;">
+            受け渡し日時
+        </div>
+    </div>
+
+    <div style="position:absolute; top: 0px; ">
+ 
+        <div
+            style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top:350px; font-size:30px;user-select: none;">
+            番船：&nbsp;
+        </div>
+        <div
+            style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top:400px; font-size:30px;user-select: none;">
+            ブロック名：&nbsp;
+        </div>
+        <div
+            style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top: 450px; font-size:30px;user-select: none;">
+            出発地：&nbsp;
+        </div>
+        <div
+            style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top: 500px; font-size:30px;user-select: none;">
+            目的地：&nbsp;
+        </div>
+        <div
+        style="width: 200px; height: 40px; font-size:25px; position:absolute; left:100px; top: 550px; font-size:30px;user-select: none;">
+        回数：&nbsp;
+        </div>
+
+
+
+        <input style="width:300px; height:40px; position:absolute; left: 280px; top: 350px; font-size:30px; user-select: none; "
+            list="bansenList" id="bansenId" name="bansenName" oninput="workCount()" placeholder="選択または手入力">
+        <datalist id="bansenList">
+        </datalist>
+
+        <input style="width:300px; height:40px; position:absolute; left: 280px; top: 400px; font-size:30px"
+            list="blockList" id="blockId" name="blockName" oninput="workCount()"placeholder="選択または手入力">
+        <datalist id="blockList">
+        </datalist>
+
+        <input style="width:300px; height:40px; position:absolute; left: 280px; top: 450px; font-size:30px"
+            list="startPointList" id="startPointId" name="moveName" oninput="workCount()"placeholder="選択または手入力">
+        <datalist id="startPointList">
+        </datalist>
+
+        <input style="width:300px; height:40px; position:absolute; left: 280px; top: 500px; font-size:30px"
+            list="endPointList" id="endPointId" name="moveName" oninput="workCount()"placeholder="選択または手入力">
+        <datalist id="endPointList">
+        </datalist>
+
+        <select style="width:100px; height:45px; position:absolute; left: 280px; top: 550px; font-size:30px"
+            id="workcountid">
+        </select>
+        
+        <button id="addwork"
+            style="width: 100px; height: 100px; position:absolute; left: 600px; top:500px; font-size :30px"
+            onclick="AddWork()">追加</button><br>
+    </div>
+
+    <div style="position:absolute; top: 50px; ">
+
+        <button id="startid"
+            style="width: 150px; height: 150px; position:absolute; left: 800px; top:-20px; font-size :30px ; user-select: none;"
+            onclick="callRegistWork('startid','addworkdepar')" >発車</button><br>
+
+        <button id="receiveid"
+            style="width: 150px; height: 150px; position:absolute; left: 800px; top:140px; font-size :30px; user-select: none;"
+            onclick="callRegistWork('receiveid','addworkreceive' )">受取</button><br>
+
+        <button id="deliveryid"
+            style="width: 150px; height: 150px; position:absolute; left: 800px; top:300px;font-size :30px; user-select: none;"
+            onclick="callRegistWork('deliveryid','addworkdelivery')">受渡</button><br>
+
+
+        <button id="returnid" style="width: 150px; height: 50px; position:absolute; left: 800px; top:480px; font-size:20px ; user-select: none;"
+            onclick="window.close()">戻る</button><br>
+
+        <label
+            style="width: 150px; height: 40px; position:absolute; left:600px; top:100px; color:red; font-size: 20px; text-decoration:underline; user-select: none; "
+            onclick="DleateRec()">実績取り消し</label>
+
+    
+    </div>
+
+    <script>
+        var Reload = function () {
+
+            AddWorkCondition();
+            // 繰り返し実行
+            setTimeout(Reload, 2000);
+        };
+        Reload();
+    </script>
+
+</body>
+
+</html>

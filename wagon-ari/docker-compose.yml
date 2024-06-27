@@ -1,0 +1,46 @@
+version: "3"
+services:
+  DB:
+    image: postgres:13
+    container_name: ari_wagon_app_db
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_PASSWORD: test 
+    volumes:
+      - ./ari_wagon_data:/var/lib/postgresql/data
+    ports:
+      - "9432:5432"
+
+  WEB_API:
+    image: node:18
+    container_name: ari_wagon_app_web_api
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    volumes:
+      - ./wagon_API:/usr/local/wagon_API
+    working_dir: /usr/local/wagon_API
+    ports:
+      - "3005:3005"
+    command: >
+      /bin/bash -c "
+      npx pm2 --no-daemon start web_API/server.js
+      "
+    depends_on:
+      - DB # DBコンテナが起動してから起動させる
+
+  WEB_SERVER:
+    image: httpd:latest
+    container_name: ari_wagon_app_web_server
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - ./wagon_app:/usr/local/apache2/htdocs
+    ports:
+      - "9080:80"
+
+
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台車管理</title>
+  <link rel="stylesheet" href="style_CSS/style.css" />
+  <script src="main_JS/config.js"></script>
+  <script src="main_JS/index.js"></script>
+  <script src="cmb_JS/cmb_setting.js"></script>
+</head>
+
+<div id="parent"></div>
+
+<div style="width: 100px; height: 1000; position: absolute; left: 0; top: 30px;">
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:250px; background-color: rgb(255, 255, 255);">
+    1号車</div>
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:380px; background-color: rgb(255, 255, 255);">
+    2号車</div>
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:510px; background-color: rgb(255, 255, 255);">
+    3号車</div>
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:640px; background-color: rgb(255, 255, 255);">
+    4号車</div>
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:770px; background-color: rgb(255, 255, 255);">
+    5号車</div>
+  <div
+    style="width:90px; height: 120px; font-size:25px; position: absolute; left:10px; top:900px; background-color: rgb(255, 255, 255);">
+    6号車</div>
+</div>
+
+<div style="background: rgb(255, 255, 255); position: fixed; width: 2000px; height: 140px; top: 0;">
+</div>
+
+
+<body onload="CallAPI();Company();BlockSize();">
+  <div>
+    <button style="width: 160px; height: 60px; font-size:20px; position: fixed; left: 100px; Top:10px;"
+      onclick="RemoveBlock();CallAPI()">データ読み込み</button><br>
+  </div>
+
+  <div>
+    <button style="width: 160px; height: 60px; font-size:20px; position: fixed; left: 300px; Top:10px;"
+      onclick="AddWork()">追加作業</button><br>
+  </div>
+
+  <div
+    style="width: 200px; height: 40px; font-size:25px; text-align: center; position:fixed; left:480px; top:20px; background-color: rgb(184, 225, 182);">
+    &nbspブロックサイズ
+  </div>
+
+  <div>
+    <button style="width: 220px; height: 60px; font-size:20px; position: fixed; left: 1300px; Top:10px;"
+      onclick="mapPlot()">台車位置情報表示</button><br>
+  </div>
+
+  <select style="width:100px; height: 40px; font-size:25px; position: fixed; left:680px; top:20px" name="gousyacmb"
+    onchange="CallAPI();RemoveBlock();SavePreSizeIdx()" id="sizeid">
+    <option>130</option>
+  </select>
+
+
+  <!-- 右側の見切れてるところにスペースを開けるため -->
+  <!-- <div
+    style="width: 100px; height: 40px; font-size:25px; text-align: auto; position:fixed; left:1000px; top:50px; background-color: rgb(255, 255, 255);">
+    &nbsp
+  </div> -->
+
+  <div
+    style="width: 100px; height: 40px; font-size:25px; text-align: auto; position:fixed; left:100px; top:90px; background-color: rgb(215, 210, 206);">
+    &nbsp作業日
+  </div>
+
+  <div id="realTimeid"
+    style="width: 250px; height: 40px; font-size:25px; position:fixed; left:200px; top:90px; background-color: bisque;">
+    &nbsp;
+  </div>
+
+
+  <select style="width:100px; height: 40px; font-size:25px; position: fixed; left:570px; top:90px" name="gousyacmb"
+    onchange="SavePreGousyaIdx()" id="gousyaid">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+  </select>
+
+  <div
+    style="width: 100px; height: 40px; font-size:25px; text-align: center; position:fixed; left:700px; top:90px; background-color: rgb(215, 210, 206);">
+    &nbsp会社
+  </div>
+
+  <select style="width:250px; height: 40px; font-size:25px; position: fixed; left: 800px; top:90px" name="companys"
+    onchange="selPref(this)" id="company">
+    <option>選択してください</option>
+  </select>
+
+  <div
+    style="width: 90px; height: 40px; font-size:25px; text-align: center; position:fixed; left:480px; top:90px; background-color: rgb(215, 210, 206);">
+    &nbsp号車
+  </div>
+
+  <div
+    style="width: 100px; height: 40px; font-size:25px; text-align: center; position:fixed; left:1100px; top:90px; background-color: rgb(215, 210, 206);">
+    &nbsp運転者
+  </div>
+
+  <select style="width:250px; height: 40px; font-size:25px; position: fixed; left:1200px; top:90px" name="employees"
+    onchange="getEmployeeSelectInfo()" id="employee">
+    <option></option>
+  </select>
+
+  <p class="mb"></p>
+
+  <div class="grid">
+    <div class="item"></div>
+    <div class="item"><span style="font-size:25px">6:00</span></div>
+    <div class="item"><span style="font-size:25px">7:00</span></div>
+    <div class="item"><span style="font-size:25px">8:00</span></div>
+    <div class="item"><span style="font-size:25px">9:00</span></div>
+    <div class="item"><span style="font-size:25px">10:00</span></div>
+    <div class="item"><span style="font-size:25px">11:00</span></div>
+    <div class="item"><span style="font-size:25px">12:00</span></div>
+    <div class="item"><span style="font-size:25px">13:00</span></div>
+    <div class="item"><span style="font-size:25px">14:00</span></div>
+    <div class="item"><span style="font-size:25px">15:00</span></div>
+    <div class="item"><span style="font-size:25px">16:00</span></div>
+    <div class="item"><span style="font-size:25px">17:00</span></div>
+    <div class="item"><span style="font-size:25px">18:00</span></div>
+    <div class="item"><span style="font-size:25px">19:00</span></div>
+    <div class="item"><span style="font-size:25px">20:00</span></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <script type="module">
+
+    //台車管理画面のタブにフォーカスが当たったら画面更新する
+    window.addEventListener('focus', function () {
+      RemoveBlock();
+      CallAPI();
+    });
+
+    // 10秒ごとにブロックの状態を更新する
+    var UpdateBlockCondition = function () {
+      // RemoveBlock();
+      // CallAPI();
+      buttonCondition();
+      // 繰り返し実行
+      setTimeout(UpdateBlockCondition, 2000);
+    }
+    UpdateBlockCondition();
+
+  </script>
+
+</body>
+
+</html>

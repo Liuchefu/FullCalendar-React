@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>実績登録画面</title>
+    <script src="main_JS/config.js"></script>
+    <script src="main_JS/registration.js"></script>
+    <link rel="stylesheet" href="style_CSS/style.css" />
+</head>
+
+
+<body onload="parameter()">
+
+    <div id="text" style="width :600px; position: absolute; left: 50px; top: 220px; font-size:30px ;">番船情報</div>
+    <div id="receiveid" style="width :250px; position: absolute; left: 650px; top: 220px; font-size:30px ; user-select: none;"></div>
+    <div id="deliveryid" style="width :250px; position: absolute; left: 650px; top: 265px; font-size:30px ; user-select: none;"></div>
+
+
+    <div id="carnumid"
+        style="width :250px; position: absolute; left: 250px; top: 40px; font-size:30px ;background-color: rgb(7, 255, 238);">
+        担当号車
+    </div>
+
+    <div id="departureid"
+        style="width :250px; position: absolute; left: 250px; top: 160px; width: 250px; font-size:30px ;background-color: rgb(7, 255, 238);user-select: none;">
+        発車時刻
+    </div>
+
+    <div id="registratorid"
+        style="width :250px; position: absolute; left: 250px; top: 100px; font-size:30px ;background-color: rgb(7, 255, 238);user-select: none;">
+        登録者
+    </div>
+
+    <div style="width: 250px; height: 40px; font-size:25px; position:absolute; left:100px; top:40px; font-size:30px;">
+        担当号車：&nbsp;
+    </div>
+
+    <div style="width: 250px; height: 40px; font-size:25px; position:absolute; left:130px; top:100px; font-size:30px;">
+        登録者：&nbsp;
+    </div>
+
+    <div
+        style="width: 170px; height: 40px; font-size:25px; position:absolute; left:100px; top:160px; font-size:30px;  user-select: none;">
+        発車時刻：&nbsp;
+    </div>
+
+
+    <div style="position:absolute; top:10px; ">
+
+        <button id="startid"
+            style="width: 150px; height: 150px; position:absolute; left: 900px; top:10px; font-size :30px"
+            onclick="DepartureButton();">発車</button><br>
+
+        <button id="receivingid"
+            style="width: 150px; height: 150px; position:absolute; left: 900px; top:180px; font-size :30px"
+            onclick="Receive();">受取</button><br>
+
+
+        <button id="deliveryId"
+            style="width: 150px; height: 150px; position:absolute; left: 900px; top:350px;font-size :30px"
+            onclick="Delivery();">受渡</button><br>
+
+
+        <button id="canselId"
+            style="width: 150px; height: 40px; position:absolute; left: 900px; top:520px; font-size:20px ;"
+            onclick="window.close()">キャンセル</button><br>
+
+        <label
+            style="width: 150px; height: 40px; position:absolute; left:650px; top:100px;color:red; font-size: 20px; text-decoration:underline; user-select: none; "
+            onclick="ActualCancel();">実績取り消し</label>
+    </div>
+
+    <div id="receivedateid"
+        style="width: 170px; height: 40px; font-size:25px; position:absolute; left:500px; top:220px; font-size:30px; user-select: none;">
+        受け日時：&nbsp;
+    </div>
+
+    <div id="shippingid"
+        style="width: 170px; height: 40px; font-size:25px; position:absolute; left:500px; top:265px; font-size:30px; user-select:none">
+        渡し日時：&nbsp;
+    </div>
+
+    <div style="width: 200px; height: 40px; font-size:25px; position:absolute; left:550px; top:40px; font-size:30px;">
+        現在：&nbsp;
+    </div>
+
+    <div id="realdatetime"
+        style="width: 250px; height: 40px; color:blue;font-size:25px; position:absolute; left:630px; top:40px;font-size:30px;">
+        &nbsp;
+    </div>
+
+    <div style="position:absolute; left:10px; top:10px">
+        <text id="comment1Id"
+            style="width: 600px; height: 40px; position:absolute; left:120px; top:360px;color:red; font-size: 30px; word-wrap: break-word;" ">Comment1</text>
+          <text id=" comment2Id"
+            style="width: 600px; height: 40px; position:absolute; left:120px; top:420px;color:red; font-size: 30px; word-wrap: break-word; " ">Comment2</text>
+    </div>
+
+    <script>
+
+        var Reload = function () {
+
+            parameter();
+            // 繰り返し実行
+            setTimeout(Reload, 2000);
+        };
+        Reload();
+    </script>
+</body>
+
+</html>

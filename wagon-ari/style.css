@@ -1,0 +1,42 @@
+h1 {
+    border-left: 25px solid #3454b4;
+    padding-left: 10px;
+    border-bottom: 3px solid #2f51b4;
+  }
+  
+  h2 {
+    border-left: 10px solid #3454b4;
+    padding-left: 15px;
+  }
+  
+  h3 {
+    border-left: 5px solid #3454b4;
+    padding-left: 20px;
+  }
+  
+   ul li {
+    color: blue;
+  }
+  
+   ol li {
+    color: green;
+  }
+  
+  img {
+    width: 80%;
+    margin: auto;
+    display: block;
+    border: 3px solid blue;
+    border-radius: 10px;
+  }
+  
+  table {
+    margin: auto;
+    display: block;
+  }
+  
+  table tr {
+    border: 2px solid green;
+    background-color: aliceblue;
+  }
+  
