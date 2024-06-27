@@ -12,6 +12,7 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // tippyのCSSをインポート
 import './FullCalendarComponent.css'; //ツールチップのスタイル変更
 
+
 const inievents: EventInput[] = [
   { id: '1', resourceId: 'b', start: '2024-06-22T02:00:00', end: '2024-06-22T02:10:00', title: 'event 1\n hello\n test', backgroundColor: 'red' },
   { id: '2', resourceId: 'c', start: '2024-06-22T05:00:00', end: '2024-06-22T10:00:00', title: 'event 2' },
@@ -23,7 +24,7 @@ const inievents: EventInput[] = [
 const FullCalendarComponent: React.FC = () => {
 
   const [events, setEvents] = useState<EventInput[]>(inievents);
-  //================================================================================
+  //====================================新規イベントを作成するときの関数============================================
   const handleDateSelect = (info: any) => {
     const title = prompt('Enter Event Title:');
     if (title) {
@@ -43,7 +44,7 @@ const FullCalendarComponent: React.FC = () => {
   }
   //==================================================================================
 
-  //==================================================================================
+  //===================================ツールチップの設定関数===============================================
   const handleEventDidMount = (info: any) => {
     let tooltip = tippy(info.el, {
       content: `${info.timeText}<br>${info.event._def.title}`,
@@ -134,7 +135,7 @@ const FullCalendarComponent: React.FC = () => {
   };
 
 
-  //=====================================================================
+  //============================以下HTML書く場所=========================================
   return (
     <div>
       <FullCalendar
