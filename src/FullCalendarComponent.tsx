@@ -42,12 +42,16 @@ const FullCalendarComponent: React.FC = () => {
     }
     info.view.calendar.unselect(); // Deselect the cells after adding the event
   }
-  //==================================================================================
+  //=============================================================================================================
 
-  //===================================ツールチップの設定関数===============================================
+  //===================================ツールチップの設定関数======================================================
   const handleEventDidMount = (info: any) => {
+    let startHour = getHour(info.event.startStr);
+    let startMin = getMin(info.event.startStr);
+    let EndHour = getHour(info.event.endStr);
+    let EndMin = getMin(info.event.endStr);
     let tooltip = tippy(info.el, {
-      content: `${info.timeText}<br>${info.event._def.title}`,
+      content: `${startHour}:${startMin}-${EndHour}:${EndMin}<br>${info.event._def.title}`,
       placement: 'top',
       trigger: 'manual',
       hideOnClick: false,
@@ -59,7 +63,7 @@ const FullCalendarComponent: React.FC = () => {
     info.el._tooltip = tooltip;
   };
 
-  //=========================イベントが動作された時に起動する関数=================================
+  //=========================イベントが動作された時に起動する関数===================================================
   const eventClick = (info: any) => {
     const title = prompt('Enter new title:', info.event.title);
     if (title) {
@@ -158,6 +162,8 @@ const FullCalendarComponent: React.FC = () => {
 
         allDaySlot={false}
 
+        selectMirror={false}
+
         businessHours={[
           {
             daysOfWeek: [1, 2, 3],
@@ -172,8 +178,8 @@ const FullCalendarComponent: React.FC = () => {
         ]}
 
         resources={[
-          { id: 'a', title: '1号車' },
-          { id: 'b', title: '2号車', eventColor: 'green' },
+          { id: 'a', title: 'Auditorium A' },
+          { id: 'b', title: 'Auditorium B', eventColor: 'green' },
           { id: 'c', title: 'Auditorium C', eventColor: 'orange' },
           {
             id: 'd', title: 'Auditorium D', children: [
@@ -210,7 +216,7 @@ const FullCalendarComponent: React.FC = () => {
               hour: '2-digit',
               minute: '2-digit',
               meridiem: false
-            }
+            },
           },
           resourceTimeGrid: {
             type: 'resourceTimeGrid',
@@ -219,7 +225,8 @@ const FullCalendarComponent: React.FC = () => {
               hour: '2-digit',
               minute: '2-digit',
               meridiem: false
-            }
+            },
+            selectMirror: false,
           }
         }}
 

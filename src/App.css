@@ -3,7 +3,9 @@
   position: absolute;
   top: 5%;
   left: 25%;
-  background-color: rgb(247, 227, 227);
+  background-color: rgb(255, 255, 255);
   border: 1px solid black;
   width: 1000px;
+  justify-content: center;
+  align-items: center;
 }
